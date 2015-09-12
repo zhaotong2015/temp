@@ -1,0 +1,73 @@
+\quad In this section, we'll introduce (C)LSH method that aims to improve inferring performance by taking advantage of information about messages' diffusion speed. Note that our methods don't ask for any extra input data other than traditional cascades set. We'll show that our method can be easily incorporated into existing network inference algorithms without adding any computational overhead. Some procedures for optimizing our method will be discussed at the end of this section.
+%==========================
+\subsection{Data and definitions}
+\quad We can only observe the activation times $t$ when diffusion happens. The first node being activated in node set $N$ is called $root$. Node appeared after $T$ is regarded as unactivated in this process. We call diffusion process as $cascade$, which contains the time stamp of activated nodes, $\textbf{t}^c=(t_1^c,t_2^c,...t_N^c)$. $C$ is the collection of cascades, C=$\{\textbf{t}^1,\textbf{t}^2,...,\textbf{t}^{|C|}\}$.
+%==========================
+\subsection{Incorporation with existing algorithms}
+\quad Network Inference algorithms always define the pairwise variable $\alpha_{ji}$ which is either the influence strength of edge or the probability that transmission happens on that edge. Previous algorithms assume that this variable of edge will not change in the whole life of diffusion which has been proved unreasonable in our empirical analysis. Here we combine the heterogeneity of influence strength with common Network Inference model by simply multiplying the popularity level $P^c(t)$ by transmission rate of edge, which is:
+\begin{equation}
+\hat{\alpha}_{ji}(t)=\alpha_{ji}*P^c(t);\label{eq:alphaT}
+\end{equation}
+
+Besides the common modification in Eq. \ref{eq:alphaT}, we'd like to show the special details when combining each previous algorithm:
+\begin{itemize}
+\item LSH-NetRate
+
+\quad We redefine the transmission likelihood function of Exponential, Power law and Rayleigh model with Eq. \ref{eq:alphaT}, which are:
+\begin{eqnarray}
+\centering
+&f(t_i|t_j,\hat{\alpha}_{ji})=\hat{\alpha}_{ji}(t_j)*e^{-\hat{\alpha}_{ji}(t_j)*(t_i-t_j)}& \nonumber \\
+&f(t_i|t_j,\hat{\alpha}_{ji})=\frac{\hat{\alpha}_{ji}(t_j)}{\delta}(\frac{t_i-t_j}{\delta})^{-1-\hat{\alpha}_{ji}(t_j)}&\nonumber \\
+&f(t_i|t_j,\hat{\alpha}_{ji})=\hat{\alpha}_{ji}(t_j)(t_i-t_j)e^{-\frac{1}{2} \hat{\alpha}_{ji}(t_j) (t_i-t_j)^2}& \nonumber
+\end{eqnarray}
+
+Note that range of $\hat{\alpha}_{ji}(t)$ is [0,1] too. Constraints of the optimization problem have no change.
+%--------------
+\item LSH-ConNie
+
+\quad The likelihood function in ConNie model is the product of 2 parts. The first part is about the probability of an infected node has at least one previously infected parent to activated it. The second part is the probability that no node ever infected an non-infected node. Variables $\hat{B}_{ji}^c=1-\hat{\alpha}_{ji}(t_j)=1-A_{ji}*P^c(t_j)$ and $\hat{\gamma}_c=1-\prod_{j:t_j \leq t_i}(1-w_{ji}\ast \hat{\alpha}_{ji}(t_j))$ are defined to transform the likelihood function into a convex optimization problem. When combining with LSH method, the amount of variables to be estimated increases as each cascade $c$ needs a unique $\hat{B}$ matrix while all cascades share the same $\hat{B}$ in the original ConNie. We'd like to propose a compromise to reduce variables amount when cascades number is large. We skip the heterogeneity in the second part of likelihood function which indicates that $\hat{B}_{ji}^c$ can be redefined as $\hat{B}_{ji}=1-A_{ji}$. The number of variables reduces to $N*N+|C|$ as demanded.
+%--------------
+\item LSH-NetInf
+
+\quad In NetInf algorithm, $P_c(u,v)$ is the probability of transmission depending only on the time intervals. We redefine the transmission likelihood of edge considering both delay and popularity level, which is $\hat{\alpha}_{ji}(t_j)=P_c(u,v)*P^c(t_j)$\xhcomment{duplicate name?$\sim \sim$}. 
+The modified likelihood in LSH-NetInf of all cascades with the maximum weighted propagation tree is:
+\begin{equation}
+\begin{aligned}
+P(C|G)&=\prod_{c\in C} \sum_{T\in \mathcal{T}_c(G)}P(c|T) \\
+&\approx \prod_{c\in C} \max_{T\in \mathcal{T}_c(G)}P(c|T) \nonumber \\
+&\approx \beta^q \varepsilon^{q'} (1-\varepsilon)^{s+s'}\prod_{(u,v)\in E_{T}}\hat{\alpha}_{ji}(t_j)
+\end{aligned}
+\end{equation}
+As noted in NetInf paper, $q$ is network edges number and $q'$ is $\varepsilon$-edges number in $T$; $s$ and $s'$ refer to those that did not transmit respectively.
+\end{itemize}
+%==========================
+\subsection{Optimization methods}
+\subsubsection{Clustering cascades}
+Extracting diffusion speed information on a single cascade is usually affected by noise as there are always some abnormal point. We use hierarchical clustering method as shown in Algorithm \ref{alg:A} to cluster similar cascades into a group. When computing popularity level, we use the average value at $t_j$ in the same cascade group. By such means, we can reduce noises and keep the common properties of diffusion speed.
+\begin{algorithm}[h]
+\caption{Clustering cascades with hierarchical clustering method}
+\label{alg:A}
+\begin{algorithmic}
+\REQUIRE number of clusters $k$; cascades set $C$
+\FOR {$c \in C$}
+\STATE $G(c)\leftarrow$ c; // initialize each group with a single cascade
+\ENDFOR;
+\FOR {$i = 1:|C|$}
+\STATE $Flag(i)\leftarrow i$; // initialize the group ID of each cascade
+\ENDFOR;
+%---------
+\FOR {each $c_1 \in C$}
+\FOR {each $c_2 \in C$}
+\STATE $D(c_1,c_2)\leftarrow$ Euclidean distance of $c_1's~S_p$ function and $c_2's~S_p$ function; 
+\ENDFOR;
+\ENDFOR;
+%---------
+\WHILE{$|G|>1$}   
+\STATE merge the nearest 2 clusters in $G$;
+\STATE update $D$ and $Flag$;
+\ENDWHILE
+\RETURN $Flag$;
+\end{algorithmic}
+\end{algorithm}
+\subsubsection{Dealing with root node} 
+Each cascade has a root node who's time is fixed at 0, and this will increase $P^c(tj=0)$ when we merged all cascades into one. This will affect every node as root's time is the earliest. We remove root node when calculating the activation number.

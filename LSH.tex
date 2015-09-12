@@ -1,0 +1,77 @@
+\def\year{2015}
+%File: formatting-instruction.tex
+\documentclass[letterpaper]{article}
+\usepackage{float}
+\usepackage{aaai}
+\usepackage{times}
+\usepackage{helvet}
+\usepackage{courier}
+\usepackage{graphicx}
+\usepackage{subfigure}
+\usepackage{amsmath}
+\usepackage{cases}
+\usepackage{multirow}
+\usepackage{array}
+\usepackage{amssymb}
+\usepackage{color}
+\usepackage{algorithm}
+\usepackage{algorithmic}
+\frenchspacing
+\setlength{\pdfpagewidth}{8.5in}
+\setlength{\pdfpageheight}{11in}
+\pdfinfo{
+/Title (LSH-Draft)
+/Author (Put All Your Authors Here, Separated by Commas)}
+\setcounter{secnumdepth}{0}  
+ \begin{document}
+% The file aaai.sty is the style file for AAAI Press 
+% proceedings, working notes, and technical reports.
+%
+
+% edit & comments
+\newcommand{\xhedit}[1]{{\color{blue} #1}}
+\newcommand{\xhcomment}[1]{\xhedit{[XH: #1]}}
+
+% math symbols
+% influence strength
+\newcommand{\ISM}{A}
+\newcommand{\IS}{\alpha}
+
+% popularity of story (diffusion speed or activation probability)
+\newcommand{\DS}{P}
+
+% number of Activation node
+\newcommand{\NActNodes}{N}
+
+
+\title{Learning networks of heterogeneous information popularity}
+\author{AAAI Press\\
+Association for the Advancement of Artificial Intelligence\\
+2275 East Bayshore Road, Suite 160\\
+Palo Alto, California 94303\\
+}
+\maketitle
+\begin{abstract}
+\quad With the increasing popularity of the social networks and information-sharing platforms, many researches about network inference problem have been proposed to deal with such cases when we can only observe the activation time of nodes but the structure of networks are unavailable. In empirical analysis, we observe the fact that previous algorithms have long ignored the heterogeneity of diffusion speed in different life stages, which can result in unsatisfactory Network Inference results. We aim to improve the performance of inference by imposing some transplantable modification on existing method in which the extracted diffusion speed information is well used. But as the estimation of diffusion speed requires parent relationship that is seldom available, we propose a surrogate approach and prove its validity by calculating their correlation. An optimization method of averaging the life span to reduct noise in single cascade is introduced. Experiments on both synthetic dataset and real world dataset show significant improvement on inference accuracy when applying our method.
+
+\end{abstract}
+%&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
+\section{Introduction}
+\input{introduction.tex}
+%&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
+\section{Empirical analysis}
+\input{empirical_analysis.tex}
+%&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
+\section{Proposed algorithm}
+\input{method.tex}
+%&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
+\section{Experiments}
+\input{experiment.tex}
+%&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
+\section{Conclusions}
+\input{conclusion.tex}
+%&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
+\bibliographystyle{aaai}
+\bibliography{misc,names,conferences,theory_submodular,theory_InfMax,ml_NetworkInference,ml_TopicModel,ml_NetworkModel,optimization}
+
+\end{document}

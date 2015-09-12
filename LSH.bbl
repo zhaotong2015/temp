@@ -1,0 +1,118 @@
+\begin{thebibliography}{}
+
+\bibitem[\protect\citeauthoryear{Adar \bgroup et al\mbox.\egroup
+  }{2004}]{adar:2004}
+Adar, E.; Zhang, L.; Adamic, L.; and Lukose, R.
+\newblock 2004.
+\newblock Implicit structure and the dynamics of blogspace.
+\newblock In {\em Workshop on the Weblogging Ecosystem}, volume~13.
+
+\bibitem[\protect\citeauthoryear{Daneshmand \bgroup et al\mbox.\egroup
+  }{2014}]{Daneshmand:Gomez:Song:recovery14}
+Daneshmand, H.; Gomez-Rodriguez, M.; Song, L.; and Sch{\"o}lkopf, B.
+\newblock 2014.
+\newblock Estimating diffusion network structures: Recovery conditions, sample
+  complexity \& soft-thresholding algorithm.
+\newblock In {\em Proc. 31st Intl. Conf. on Machine Learning}.
+
+\bibitem[\protect\citeauthoryear{Domingos and Richardson}{2001}]{domingos:2001}
+Domingos, P., and Richardson, M.
+\newblock 2001.
+\newblock Mining the network value of customers.
+\newblock In {\em Proceedings of the Seventh ACM SIGKDD International
+  Conference on Knowledge Discovery and Data Mining}, KDD '01,  57--66.
+
+\bibitem[\protect\citeauthoryear{Dong, Berti-Equille, and
+  Srivastava}{2009}]{dong:2009}
+Dong, X.~L.; Berti-Equille, L.; and Srivastava, D.
+\newblock 2009.
+\newblock Truth discovery and copying detection in a dynamic world.
+\newblock {\em Proc. VLDB Endow.} 2(1).
+
+\bibitem[\protect\citeauthoryear{Du \bgroup et al\mbox.\egroup
+  }{2012}]{Du:Song:Song:Alex:HeterogeneousInf}
+Du, N.; Song, L.; Yuan, S.; and Smola, A.~J.
+\newblock 2012.
+\newblock Learning networks of heterogeneous influence.
+\newblock In {\em Proc. 24th Advances in Neural Information Processing
+  Systems}.
+\newblock  2780--2788.
+
+\bibitem[\protect\citeauthoryear{Du \bgroup et al\mbox.\egroup
+  }{2013}]{Du:Song:Woo:Zha:topicCascade}
+Du, N.; Song, L.; Woo, H.; and Zha, H.
+\newblock 2013.
+\newblock Uncover topic-sensitive information diffusion networks.
+\newblock In {\em Proc. 16th Intl. Conf. on Artificial Intelligence and
+  Statistics}.
+
+\bibitem[\protect\citeauthoryear{Gomez-Rodriguez, Balduzzi, and
+  Sch\"{o}lkopf}{2011}]{gomez-rodriguez:balduzzi:schoelkopf:uncovering}
+Gomez-Rodriguez, M.; Balduzzi, D.; and Sch\"{o}lkopf, B.
+\newblock 2011.
+\newblock Uncovering the temporal dynamics of diffusion networks.
+\newblock In {\em Proc. 28th Intl. Conf. on Machine Learning},  561--568.
+
+\bibitem[\protect\citeauthoryear{Gomez-Rodriguez, Leskovec, and
+  Krause}{2012}]{gomez-rodriguez:leskovec:krause:inferring}
+Gomez-Rodriguez, M.; Leskovec, J.; and Krause, A.
+\newblock 2012.
+\newblock Inferring networks of diffusion and influence.
+\newblock {\em ACM Transactions on Knowledge Discovery from Data} 5(4).
+
+\bibitem[\protect\citeauthoryear{Gruhl \bgroup et al\mbox.\egroup
+  }{2004}]{gruhl:2004}
+Gruhl, D.; Guha, R.; Liben-Nowell, D.; and Tomkins, A.
+\newblock 2004.
+\newblock Information diffusion through blogspace.
+\newblock In {\em Proceedings of the 13th International Conference on World
+  Wide Web}, WWW '04,  491--501.
+
+\bibitem[\protect\citeauthoryear{Kempe, Kleinberg, and
+  Tardos}{2003}]{kempe:2003}
+Kempe, D.; Kleinberg, J.; and Tardos, E.
+\newblock 2003.
+\newblock Maximizing the spread of influence through a social network.
+\newblock In {\em Proceedings of the Ninth ACM SIGKDD International Conference
+  on Knowledge Discovery and Data Mining}, KDD '03,  137--146.
+
+\bibitem[\protect\citeauthoryear{Leskovec, Adamic, and
+  Huberman}{2007}]{leskovec:2007a}
+Leskovec, J.; Adamic, L.~A.; and Huberman, B.~A.
+\newblock 2007.
+\newblock The dynamics of viral marketing.
+\newblock {\em ACM Trans. Web} 1(1).
+
+\bibitem[\protect\citeauthoryear{Leskovec, Kleinberg, and
+  Faloutsos}{2005}]{leskovec:2005}
+Leskovec, J.; Kleinberg, J.; and Faloutsos, C.
+\newblock 2005.
+\newblock Graphs over time: Densification laws, shrinking diameters and
+  possible explanations.
+\newblock In {\em Proceedings of the Eleventh ACM SIGKDD International
+  Conference on Knowledge Discovery in Data Mining}, KDD '05,  177--187.
+
+\bibitem[\protect\citeauthoryear{Wang \bgroup et al\mbox.\egroup
+  }{2014}]{Wang:Hu:Philip:Li:multiAspect}
+Wang, S.; Hu, X.; Yu, P.~S.; and Li, Z.
+\newblock 2014.
+\newblock Mmrate: Inferring multi-aspect diffusion networks with multi-pattern
+  cascades.
+\newblock In {\em Proc. 20th Intl. Conf. on Knowledge Discovery and Data
+  Mining},  1246--1255.
+
+\bibitem[\protect\citeauthoryear{Yang and Zha}{2013}]{yang:zha:mutualExciting}
+Yang, S.-H., and Zha, H.
+\newblock 2013.
+\newblock Mixture of mutually exciting processes for viral diffusion.
+\newblock In {\em Proc. 30th Intl. Conf. on Machine Learning}.
+
+\bibitem[\protect\citeauthoryear{Zhou, Zha, and
+  Song}{2013}]{zhou:zha:song:mutualExciting}
+Zhou, K.; Zha, H.; and Song, L.
+\newblock 2013.
+\newblock Learning social infectivity in sparse low-rank network using
+  multi-dimensional hawkes processes.
+\newblock In {\em Proc. 30th Intl. Conf. on Machine Learning}.
+
+\end{thebibliography}
